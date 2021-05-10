@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="287.0" prefWidth="600.0" style="-fx-background-color: #183152;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ui.controllers.LoginController">
+   <children>
+      <HBox prefHeight="287.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="287.0" prefWidth="348.0">
+               <children>
+                  <Pane prefHeight="287.0" prefWidth="348.0">
+                     <children>
+                        <Label fx:id="labelId" layoutX="105.0" layoutY="60.0" prefHeight="25.0" prefWidth="138.0" styleClass="labelId" stylesheets="@../styles/application.css" text="    Chat App Lab1">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="passwordTxtField" focusTraversable="false" layoutX="75.0" layoutY="173.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter your password" visible="false">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </TextField>
+                        <JFXButton fx:id="vamosBtn" layoutX="144.0" layoutY="226.0" onAction="#handleLogin" styleClass="vamosBtn" stylesheets="@../styles/application.css" text="VAMOS" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <TextField fx:id="nameTxtField" layoutX="75.0" layoutY="119.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter your name">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <VBox prefHeight="287.0" prefWidth="251.0">
+               <children>
+                  <Pane prefHeight="289.0" prefWidth="251.0">
+                     <children>
+                        <ImageView fx:id="imgView" fitHeight="114.0" fitWidth="107.0" layoutX="85.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../verypoordrawing.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="choosePicBtn" buttonType="RAISED" layoutX="78.0" layoutY="175.0" onAction="#choosePicHandle" styleClass="choosePicBtn" stylesheets="@../styles/application.css" text="Choose Picture" textFill="WHITE" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

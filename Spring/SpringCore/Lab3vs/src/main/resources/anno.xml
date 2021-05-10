@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+              
+    <context:annotation-config/>
+
+    <!-- it ignored the lazy as the one using it is not lazt-->
+    <bean id="engineBeanId" class="org.example.models.Engine" lazy-init="true"/>
+
+    <!-- for engineBeanId to be lazy the one using it must be lazy too-->
+    <bean id="carBeanId" class="org.example.models.Car" lazy-init="true">
+        <property name="engine" ref="engineBeanId"/>
+    </bean>
+
+    <!-- Unsatisfied dependency expressed through constructor parameter 0; 
+    nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: 
+    No qualifying bean of type 'org.example.daos.Dao1' available: 
+    expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {} -->
+    <!-- with the annotation @Autowired on the constr it gave the above expection meaning that its required??!! -->
+    <bean id="service1BeanId" class="org.example.services.impls.Service1Impl"/>
+
+    <bean id="dao1Id" class="org.example.daos.Dao1" lazy-init="true">
+        <qualifier value="daoQualifier"/>
+    </bean>
+
+    <!-- EXCEPTION: expected single matching bean but found 2: dao1Id,dao1Id2  then lets tryout the @Qualifier-->
+    <bean id="dao1Id2" class="org.example.daos.Dao1" lazy-init="true">
+        <qualifier type="org.example.customQualifiers.DaoQualifier">
+            <attribute key="name" value="daoCusQualifier" />
+            <attribute key="code" value="15x" />
+        </qualifier>
+    </bean>
+
+
+    
+</beans>

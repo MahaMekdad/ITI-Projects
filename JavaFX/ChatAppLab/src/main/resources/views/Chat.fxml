@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ui.controllers.ChatController">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+         <top>
+            <AnchorPane BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <ImageView fx:id="userPic" fitHeight="86.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../verypoordrawing.png" />
+               </image>
+            </ImageView>
+         </left>
+         <center>
+            <Label fx:id="nameLabel" prefHeight="42.0" prefWidth="215.0" text="Name" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <ScrollPane fx:id="scrollId" hbarPolicy="NEVER" prefHeight="300.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox fx:id="vContentArea" prefHeight="298.0" prefWidth="597.0" styleClass="vContentArea" stylesheets="@../styles/application.css" />
+         </content>
+      </ScrollPane>
+      <HBox prefWidth="600.0" spacing="4.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Pane prefHeight="34.0" prefWidth="602.0">
+               <children>
+                  <TextField fx:id="textField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="488.0" translateX="12.0" />
+                  <JFXButton fx:id="sendBtn" layoutX="490.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleSendBtn" prefHeight="34.0" prefWidth="70.0" styleClass="choosePicBtn" stylesheets="@../styles/application.css" text="Send" textFill="WHITE" translateX="25.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+    
+    <import resource="services.xml"/>
+
+    <!-- Constructor Based Injection -->
+    <bean id="dao1" class="org.example.daos.Dao1"/>
+
+    <bean id="service2IdDao1" class="org.example.services.impls.Service2Impl">
+        <constructor-arg ref="dao1"/>
+    </bean>
+
+    <bean id="service2IdDao2" class="org.example.services.impls.Service2Impl">
+        <constructor-arg>
+            <bean class="org.example.daos.Dao2"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- tryin to see which constructor it will call the one with the interface ref or impl class ref-->
+    <!-- answer is always the constructor with the impl arg unless its not there-->
+    <bean id="service2IdDao2Inter" class="org.example.services.impls.Service2Impl">
+        <constructor-arg>
+            <bean class="org.example.services.impls.Service3Impl"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- Factory Method Based Injection -->
+    <!-- refering back to the same dao1-->
+    <bean id="factory" class="org.example.services.BeanFactory"/>
+    <bean id="dao2" class="org.example.daos.Dao2"/>
+
+     
+    <!-- An exception occured while executing the Java class. 
+         Error creating bean with name 'factoryMethodCalling' defined in class path resource [beans.xml]: 
+         Invalid factory method 'method': needs to have a non-void return type!  -->
+
+    <!-- java.lang.IllegalStateException: 
+         Cannot convert value of type 'java.lang.String' to required type 'org.example.daos.Dao1'-->     
+    <bean id="factoryMethodCalling" factory-bean="factory" factory-method="method">
+        <constructor-arg ref="dao1"/>
+        <constructor-arg ref="dao2"/>
+        <constructor-arg value="nothing"/>
+    </bean>
+
+    <!-- Setter Based Injection -->
+
+    <!-- An exception occured while executing the Java class. 
+         Error creating bean with name 'testServiceID' defined in class path resource [beans.xml]: 
+         Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: 
+         Invalid property 'dao1' of bean class [org.example.services.TestService]: 
+         Bean property 'dao1' is not writable or has an invalid setter method. Did you mean 'doa1'?-->
+    <bean id="testServiceID" class="org.example.models.TestService">
+        <property name="dao1">
+            <!-- this is an anonymous inner bean and doesnt require an id 
+                 and the container ignores it as they are created for the outer bean also they share its scope-->
+            <bean class="org.example.daos.Dao1"/>
+        </property>
+    </bean>
+
+    <!-- trying circular dependency-->
+    <!-- <bean id="circular2" class="org.example.models.Circular2"/> -->
+
+    <!-- <bean id="circular1Id" class="org.example.models.Circular1">
+        <constructor-arg ref="circular2Id">
+        </constructor-arg>
+    </bean> -->
+
+    <!-- <bean id="circular1" class="org.example.models.Circular1"/> -->
+
+    <!-- <bean id="circular2Id" class="org.example.models.Circular2">
+        <constructor-arg ref="circular1Id">
+        </constructor-arg>
+    </bean> -->
+
+
+
+    <!-- <bean id="circular1Id" class="org.example.models.Circular1">
+        <property name="c2">
+            <bean class="org.example.models.Circular2"/>
+        </property>
+    </bean>
+    
+    <bean id="circular2Id" class="org.example.models.Circular2">
+        <property name="c1">
+            <bean class="org.example.models.Circular1"/>
+        </property>
+    </bean> -->
+
+</beans>

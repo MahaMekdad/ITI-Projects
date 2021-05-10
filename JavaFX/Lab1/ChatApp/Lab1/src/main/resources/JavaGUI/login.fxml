@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JavaGUI.LoginController">
+   <center>
+      <VBox alignment="CENTER" maxHeight="223.0" maxWidth="528.0" prefHeight="223.0" prefWidth="528.0" spacing="20.0">
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button layoutX="138.0" layoutY="132.0" mnemonicParsing="false" onAction="#switchToChat" text="Yalla !!" />
+                        <Label layoutX="82.0" layoutY="37.0" text="JETS Chat Room">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameTxtField" layoutX="31.0" layoutY="87.0" prefHeight="26.0" prefWidth="265.0" promptText=" Please Enter Your Name:" />
+                        <Button fx:id="choosePic" layoutX="379.0" layoutY="132.0" mnemonicParsing="false" text="Choose Pic" />
+                        <ImageView fx:id="imgView" fitHeight="93.0" fitWidth="237.0" layoutX="370.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/original.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </center>
+            </BorderPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

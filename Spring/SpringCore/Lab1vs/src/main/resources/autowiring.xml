@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire-candidates="*Service">
+
+    <!-- the autowiring autowires relations between beans without writing the dependencies ourself -->
+    <!-- autowiring has 4 modes default(not used and i do it aka Bean references must be defined by ref elements.), 
+                                byName, byType, constructor -->
+    
+
+    <!-- autowiring byName-->
+    <bean id="userServiceId" class="org.example.services.UserService" autowire="byName"/>
+
+    <!-- aint it suppose to be the same name -->
+    <bean id="dao1zzz" class="org.example.daos.Dao1"/>
+    <!-- <bean id="dao1xxx" class="org.example.daos.Dao1"/> -->
+
+    <!-- autowiring byType-->
+    <!-- An exception occured while executing the Java class. 
+         Error creating bean with name 'productServiceId' defined in class path resource [autowiring.xml]: 
+         Unsatisfied dependency expressed through bean property 'dao1'; 
+         nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: 
+         No qualifying bean of type 'org.example.daos.Dao1' available: 
+         expected single matching bean but found 4: dao1,dao1Id,dao1zzz,dao1BeanId2 -->
+    <!-- <bean id="productServiceId" class="org.example.services.ProductService" autowire="byType"/>
+
+    <bean id="dao1BeanId2" class="org.example.daos.Dao1" primary="true"/> -->
+
+    <!-- see from all different xml files as most of them are created and their default scope is singletion-->
+    
+    <bean id="service1" class="org.example.services.impls.Service1Impl" autowire-candidate="true"></bean>  
+    <bean id="trialId" class="org.example.services.Trial" autowire="constructor"/> 
+                        
+</beans>

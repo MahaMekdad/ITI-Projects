@@ -1,0 +1,85 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security
+        https://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- <security:global-method-security secured-annotations="enabled" jsr250-annotations="enabled" pre-post-annotations="enabled">
+        <security:protect-pointcut expression="execution(* org.example.service..testPoint(..))" access="ROLE_ADMIN" />
+    </security:global-method-security> -->
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="salma" password="$2a$10$mjhhw3MU0NayK9ZVfRWQKOF5S.NnaHjP2rgQaRF4VCK8tDZUOPQmK" authorities="ROLE_ADMIN" />
+                <security:user name="maha" password="$2a$10$mjhhw3MU0NayK9ZVfRWQKOF5S.NnaHjP2rgQaRF4VCK8tDZUOPQmK" authorities="ROLE_USER" />
+                <security:user name="khalid" password="$2a$10$mjhhw3MU0NayK9ZVfRWQKOF5S.NnaHjP2rgQaRF4VCK8tDZUOPQmK" authorities="ROLE_MANAGER,ROLE_USER" />
+            </security:user-service>
+            <security:password-encoder hash="bcrypt"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!-- no name defined so the default name is springSecurityFilterChain -->
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
+
+        <security:access-denied-handler error-page="/errorPage"/>
+
+        <security:remember-me key="remember-me-key"
+                              remember-me-parameter="remember-me"
+                              token-validity-seconds="100"/>
+    </security:http>
+    <!-- <security:http>
+        <security:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
+        <security:form-login login-page="/customLogin"
+        login-processing-url="/submitlogin"
+        authentication-failure-url="/customLogin?error"
+        username-parameter="user"
+        password-parameter="pass"/>
+
+        <security:access-denied-handler error-page="/errorPage"/>
+
+        <security:remember-me key="remember-me-key"
+                              remember-me-parameter="remember-me"
+                              token-validity-seconds="100"/>
+    </security:http> -->
+
+    <!-- <security:http>
+        <security:form-login login-page="/customLogin"
+        login-processing-url="/submitlogin"
+        authentication-failure-url="/customLogin?error"
+        username-parameter="user"
+        password-parameter="pass"/>
+
+        <security:access-denied-handler error-page="/errorPage"/>
+
+        <security:remember-me key="remember-me-key"
+                              remember-me-parameter="remember-me"
+                              token-validity-seconds="3000000"/>
+    </security:http> -->
+
+    <!-- <security:http auto-config="true">
+        <security:access-denied-handler error-page="/error"/> -->
+
+        <!-- order matters -->
+        <!-- <security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/user/*" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/*" access="permitAll()"/> -->
+
+        <!-- <security:session-management>
+            <security:concurrency-control max-sessions="1"/>
+        </security:session-management> -->
+    <!-- </security:http> -->
+
+    <!-- <bean id="helloService" class="org.example.service.HelloUserServiceImpl"/> -->
+    
+</beans>

@@ -1,0 +1,16 @@
+<table border="1">
+    <tbody>
+        <tr>
+            <th>Activity Name</th>
+            <th>LOCATION</th>
+        </tr>
+        <tr>
+            <th>blah1</th>
+            <th>XYZ</th>
+        </tr>
+        <tr>
+             <th>blah2</th>
+             <th>maha</th>
+        </tr>
+    </tbody>
+</table>

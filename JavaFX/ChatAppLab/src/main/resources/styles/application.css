@@ -1,0 +1,20 @@
+.choosePicBtn{
+    -fx-background-color: #375D81;
+    -fx-background-radius: 4px;
+}
+
+.vamosBtn{
+    -fx-background-color: #375D81;
+    -fx-background-radius: 4px;
+}
+
+.labelId{
+    -fx-background-color: #ABC8E2;
+    -fx-background-radius: 5px;
+    /*-fx-text-alignment: center;*/
+}
+
+.vContentArea{
+    -fx-background-radius: 10px;
+    /*-fx-border-color: #375D81;*/
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+                        
+
+    <!-- what is the point of the 2 att abstract and class?? -->
+    <!-- no instantiation khales removed both and still works -->
+    <bean id="parentBeanConfig" abstract="true" class="org.example.models.Parent" init-method="init" destroy-method="destroy">
+        <property name="name" value="parent name"/>
+        <property name="age" value="22"/>
+        <property name="email" value="parent email"/>
+        <property name="phone" value="0123456789"/>
+        <property name="addresses">
+            <list>
+                <value>add1</value>
+                <value>add2</value>
+            </list>
+        </property>
+        <property name="addressesMap">
+            <map>
+                <entry key="key1" value="add1"/>
+                <entry key="key2" value="add2"/>
+                <entry key="key3" value="add3"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- method init was not seen unless written in the Child class plus it doesnot have the attr-->
+    <bean id="childBean" parent="parentBeanConfig" class="org.example.models.Child" scope="prototype">
+        <property name="name" value="child name"/>
+        <property name="addresses">
+            <list>
+                <value>add3 child</value>
+            </list>
+        </property>
+        <property name="addressesMap">
+            <map>
+                <entry key="key1" value="add1 child"/>
+                <entry key="key4" value="add4 child"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <value>props/data.properties</value>
+        </property>
+    </bean>
+    <bean id="testProps" class="org.example.models.TestClass">
+        <property name="st" value="${test}"></property>
+    </bean>
+</beans>

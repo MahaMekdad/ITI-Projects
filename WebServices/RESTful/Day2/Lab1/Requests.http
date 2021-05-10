@@ -1,0 +1,43 @@
+POST http://localhost:9191/RESTDay2Lab1/api/employees HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "shahd3",
+    "lastName": "shahd",
+    "phone": "01111111111",
+    "email": "shahd@gmail.com"
+}
+
+###
+
+GET http://localhost:9191/RESTDay2Lab1/api/employees HTTP/1.1
+Accept: application/json
+
+###
+
+GET http://localhost:9191/RESTDay2Lab1/api/employees/9 HTTP/1.1
+Accept: application/xml
+
+###
+
+PUT http://localhost:9191/RESTDay2Lab1/api/employees/3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "zeina",
+    "lastName": "shahd",
+    "phone": "01111111111",
+    "email": "zeina@gmail.com"
+}
+
+###
+
+DELETE http://localhost:9191/RESTDay2Lab1/api/employees/3 HTTP/1.1
+Accept: application/json
+
+###
+
+DELETE http://localhost:9191/RESTDay2Lab1/api/employees HTTP/1.1
+Accept: application/json
+
+###

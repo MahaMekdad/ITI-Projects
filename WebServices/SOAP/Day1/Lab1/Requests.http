@@ -1,0 +1,78 @@
+POST http://localhost:9191/SOAPDay1Lab1/ws/employee HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:emp="http://services.web.example.org/">
+    
+    <soap:Body>
+        <emp:addEmp>
+            <arg0>
+                <email>maha@gmail.com</email>
+                <firstName>maha33</firstName>
+                <id>1</id>
+                <lastName>maha</lastName>
+                <phone>01111111111</phone>
+            </arg0>    
+        </emp:addEmp>
+    </soap:Body>
+
+</soap:Envelope>
+
+###
+
+POST http://localhost:9191/SOAPDay1Lab1/ws/employee HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:emp="http://services.web.example.org/">
+    
+    <soap:Body>
+        <emp:deleteEmp>
+            <arg0>4</arg0>    
+        </emp:deleteEmp>
+    </soap:Body>
+
+</soap:Envelope>
+
+###
+
+POST http://localhost:9191/SOAPDay1Lab1/ws/employee HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:emp="http://services.web.example.org/">
+    
+    <soap:Body>
+        <emp:updateEmp>
+            <arg0>
+                    <email>maha@gmail.com</email>
+                    <firstName>UPDATEEE</firstName>
+                    <id>1</id>
+                    <lastName>UPDATE</lastName>
+                    <phone>01111111111</phone>
+            </arg0>  
+            <arg1>1</arg1>  
+        </emp:updateEmp>
+    </soap:Body>
+
+</soap:Envelope>
+
+###
+
+POST http://localhost:9191/SOAPDay1Lab1/ws/employee HTTP/1.1
+Content-Type: text/xml
+
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:emp="http://services.web.example.org/">
+    
+    <soap:Body>
+        <emp:getEmp>
+            <arg0>3</arg0> 
+        </emp:getEmp>
+    </soap:Body>
+
+</soap:Envelope>

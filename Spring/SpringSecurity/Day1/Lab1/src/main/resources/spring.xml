@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security
+        https://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- <security:global-method-security secured-annotations="enabled" jsr250-annotations="enabled"/> -->
+    <!-- <security:global-method-security jsr250-annotations="enabled"/> -->
+    <!-- <security:global-method-security pre-post-annotations="enabled"/> -->
+    <!-- <aop:aspectj-autoproxy/> -->
+    <security:global-method-security secured-annotations="enabled" jsr250-annotations="enabled" pre-post-annotations="enabled">
+        <security:protect-pointcut expression="execution(* org.example.service..testPoint(..))" access="ROLE_ADMIN" />
+    </security:global-method-security>
+
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="salma" password="$2a$10$mjhhw3MU0NayK9ZVfRWQKOF5S.NnaHjP2rgQaRF4VCK8tDZUOPQmK" authorities="ROLE_ADMIN" />
+                <security:user name="maha" password="$2a$10$mjhhw3MU0NayK9ZVfRWQKOF5S.NnaHjP2rgQaRF4VCK8tDZUOPQmK" authorities="ROLE_USER" />
+                <security:user name="khalid" password="$2a$10$mjhhw3MU0NayK9ZVfRWQKOF5S.NnaHjP2rgQaRF4VCK8tDZUOPQmK" authorities="ROLE_MANAGER,ROLE_USER" />
+            </security:user-service>
+            <security:password-encoder hash="bcrypt"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="helloService" class="org.example.service.HelloUserServiceImpl"/>
+
+    <bean id="calcBeanId" class="org.example.impl.CalculatorImpl"/>
+
+    <!-- <bean id="mainAdviceBeanId" class="org.example.advice.MainAdviceAnno"/> -->
+    
+</beans>

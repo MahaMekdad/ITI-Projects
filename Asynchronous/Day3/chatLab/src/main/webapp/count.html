@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <label name="label" id="label"></label>
+    <input type="button" name="btn1" id="btn1" value="Start" onclick="startWorker()">
+    <input type="button" name="btn2" id="btn2" value="Stop" onclick="stopWorker()">
+    <script>
+        var worker;
+        function startWorker(){
+            if(typeof (Worker) !== "undefined"){
+                if(typeof (worker) == "undefined"){
+                    worker = new Worker("worker.js")
+                    worker.postMessage(0)
+                }
+                worker.onmessage = function (event){
+                    document.getElementById("label").innerHTML = event.data
+                }
+            }else{
+                console.log("not supported")
+            }
+        }
+        function stopWorker(){
+            if(worker !== undefined){
+                worker.terminate()
+                worker = undefined
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+
+    <!-- normal bean constructor instatiation -->
+    <bean id="service1Id" class="org.example.services.impls.Service1Impl" />
+
+    <!-- gave me inside the string so we added the type to call the int arg constr -->
+    <bean id="service3Id" class="org.example.services.impls.Service3Impl">
+        <constructor-arg type="int" value="20" />
+    </bean>
+
+    <!-- gave me inside the string so maybe the string constructor is always the 1st one dunno -->
+    <!-- <bean id="service3ID" class="org.example.services.impls.Service3Impl">
+        <constructor-arg value="word"/>
+    </bean> -->
+
+    <!-- bean static factory method instatiation -->
+    <!-- same Service3Impl obj but just wanted to try the multi-args and defining the index -->
+    <!-- we can use the arg names as well instead of the index although no problem for the container to figure it out without anything-->
+    <bean id="service3Idv2" class="org.example.services.impls.Service3Impl">
+        <constructor-arg index="1" value="w"/>
+        <constructor-arg index="0" value="5"/>
+    </bean>
+
+    <!-- here trying to get the obj from a static method that returns this Service4Impl obj for me -->
+    <!-- <bean id="service4ID" class="org.example.services.Helper" factory-method="createS4" /> -->
+    <bean name="s4n1, s4n2" class="org.example.models.Helper" factory-method="createS4" />
+
+    <bean id="factory" class="org.example.services.BeanFactory"/>
+    <bean id="s4FromFactory" factory-bean="factory" factory-method="nonStaticS4Creation"/>
+
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.FileBrowserController">
+   <top>
+      <Pane prefHeight="59.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="80.0" layoutY="23.0" text="File Browser">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="directoriesListId" layoutX="264.0" layoutY="24.0" onAction="#onChosenDir" prefHeight="25.0" prefWidth="237.0" />
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.3779264214046823" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <TreeView fx:id="treeViewId" onMouseClicked="#selectedItem" />
+            <ListView fx:id="listViewId" />
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

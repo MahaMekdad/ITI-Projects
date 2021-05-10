@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+                        
+    <bean id="service1Id" class="org.example.services.impls.Service1Impl"/>
+
+    <bean id="testClassId" class="org.example.models.TestClass">
+        <property name="stList">
+            <list>
+                <value>string 1</value>
+                <value>string 2</value>
+            </list>
+        </property>
+        <property name="list">
+            <list>
+                <value>lol</value>
+                <ref bean="service1Id"/>
+            </list>
+        </property>
+        <property name="st">
+            <null/>
+        </property>
+        <property name = "addressSet">
+            <set>
+               <value>Ham</value>
+               <value>Zon</value>
+               <value>Lew</value>
+               <value>Sol</value>
+            </set>
+         </property>
+         <property name = "addressMap">
+            <map>
+               <entry key = "1" value = "Ham"/>
+               <entry key = "2" value = "Zon"/>
+               <entry key = "3" value = "Lew"/>
+               <entry key = "4" value = "Sol"/>
+            </map>
+         </property>
+         <property name = "addressProp">
+            <props>
+               <prop key = "one">Ham</prop>
+               <prop key = "one">Zon</prop>
+               <prop key = "two">Lew</prop>
+               <prop key = "three">Sol</prop>
+            </props>
+         </property>
+    </bean>
+
+    <!-- <bean id="compoundClassId" class="org.example.models.CompoundClass">
+        <property name="testClassId.st" value="my value was changed by the compound property bean"/>
+    </bean> -->
+
+    <bean id="s2Impl" class="org.example.services.impls.Service2Impl" depends-on="dao1Id, dao2Id"/>
+    <bean id="dao1Id" class="org.example.daos.Dao1"/>
+    <bean id="dao2Id" class="org.example.daos.Dao2"/>
+</beans>

@@ -1,0 +1,81 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="org.example"/>
+    <!-- <context:annotation-config/> -->
+
+    <!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/> -->
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    
+
+    <!-- <bean id="userServiceId" class="org.example.service.UserServiceImp"/> -->
+    
+    <bean name="helloController" class="org.example.controller.HelloWorldController"/>
+
+    <bean name="myMapping1" class="org.example.myMappings.MyHandlerMapping1">
+        <property name="order" value="1"/>
+    </bean>
+
+
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <bean name="/hello.htm" class="org.example.controller.HelloWorldController">
+        <!-- <property name="order" value="2"/> -->
+    </bean> 
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="order" value="3"/>
+        <property name="mappings">
+            <props>
+                <prop key="/welcome.htm">helloController</prop>
+                <prop key="/pixar">pixarController</prop>
+                <prop key="/pixar2">pixarPageForwardController</prop>
+                <prop key="/testServlet.htm">testServletController</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <!-- ************StaticBrowsing************ -->
+
+    <bean name="pixarController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="pixar"
+          p:statusCode="ACCEPTED"/>
+
+    <bean name="pixarPageForwardController" class="org.example.staticBrowsing.PixarPageForward"/>
+
+    <!-- <bean id="testServletController" class="org.springframework.web.servlet.mvc.ServletForwardingController">
+        <property name="servletName">
+            <value>TestServlet</value>
+        </property>
+    </bean> -->
+
+    <bean id="testServletController" class="org.springframework.web.servlet.mvc.ServletWrappingController">
+        <property name="servletClass">
+            <value>org.example.servlet.TestServlet2</value>
+        </property>
+        <property name="servletName">
+            <value>TestServlet</value>
+        </property>
+    </bean>
+
+</beans>
