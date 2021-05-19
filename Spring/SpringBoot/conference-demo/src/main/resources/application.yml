@@ -1,0 +1,4 @@
+server:
+  port: 8888
+
+#it read both however its better to choose 1 and stick to it yml or prop. P.S yml can be more readable
